@@ -1,20 +1,29 @@
+import * as React from 'react';
+import BottomTabs from './bottomScreens/BottomTabs'
+import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import Login from './screens/Users/Login';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(["Warning:`useNativeDriver` was not specified. This is a required option and must be explicitly set to `true` or `false`"])
 
 export default function App() {
+
+  const [loggedin, setLoggedin] = React.useState(false)
+
+  const loginHandle = (status) => {
+    setLoggedin(status)
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      {loggedin ? (
+        <NavigationContainer>
+          <BottomTabs />
+        </NavigationContainer>
+      ) : (
+        <Login login={loginHandle} />
+      )}
+      <StatusBar style='light' />
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
