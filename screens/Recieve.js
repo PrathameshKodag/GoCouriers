@@ -4,7 +4,7 @@ import React from "react";
 export default function Recieve() {
   return (
     <View>
-      <Text>Recieved</Text>
+      <Text>Recieved from pk</Text>
     </View>
   );
 }
